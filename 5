@@ -1,0 +1,55 @@
+public abstract class Person
+{
+    // ... other properties and methods ...
+
+    public virtual double CalculateSalary()
+    {
+        return 0.0;
+    }
+}
+public class Student : Person
+{
+    // ... other properties and methods ...
+
+    public override double CalculateSalary()
+    {
+        double stipend = 0;
+
+        if (GetGPA() >= 3.5)
+        {
+            stipend = 1000;
+        }
+        else if (GetGPA() >= 3.0)
+        {
+            stipend = 500;
+        }
+
+        return stipend;
+    }
+}
+public class Instructor : Person
+{
+    // ... other properties and methods ...
+
+    public override double CalculateSalary()
+    {
+        double baseSalary = 40000;
+        double experienceBonus = GetYearsOfExperience() * 1000;
+
+        return baseSalary + experienceBonus;
+    }
+}
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Student student = new Student("John", "Doe", 20, "Computer Science", 3.5);
+        Instructor instructor = new Instructor("Jane", "Smith", 35, "Mathematics", 10);
+
+        string studentInfo = $"I am a student majoring in {student.GetMajor()} with a GPA of {student.GetGPA()} and a stipend of {student.CalculateSalary()} USD.";
+        string instructorInfo = $"I am an instructor teaching {instructor.GetSubject()} with {instructor.GetYearsOfExperience()} years of experience and a salary of {instructor.CalculateSalary()} USD.";
+
+        student.Introduce(studentInfo);
+        instructor.Introduce(instructorInfo);
+    }
+}
