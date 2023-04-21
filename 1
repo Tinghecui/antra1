@@ -1,0 +1,63 @@
+using System;
+
+//Abstraction
+abstract class Animal
+{
+    public abstract void MakeSound();
+}
+
+//Encapsulation
+class Dog : Animal
+{
+    private string name;
+    private int age;
+
+    public Dog(string name, int age)
+    {
+        this.name = name;
+        this.age = age;
+    }
+
+    public override void MakeSound()
+    {
+        Console.WriteLine("Woof!");
+    }
+
+    public void PrintInfo()
+    {
+        Console.WriteLine("Name: " + name);
+        Console.WriteLine("Age: " + age);
+    }
+}
+
+//Inheritance
+class Cat : Animal
+{
+    public override void MakeSound()
+    {
+        Console.WriteLine("Meow!");
+    }
+}
+
+//Polymorphism
+class AnimalShelter
+{
+    public void PlayWithAnimal(Animal animal)
+    {
+        animal.MakeSound();
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Dog myDog = new Dog("Fido", 5);
+        Cat myCat = new Cat();
+        AnimalShelter shelter = new AnimalShelter();
+
+        myDog.PrintInfo(); // Encapsulation
+        shelter.PlayWithAnimal(myDog); // Polymorphism
+        shelter.PlayWithAnimal(myCat); // Polymorphism
+    }
+}
