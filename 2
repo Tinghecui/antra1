@@ -1,0 +1,65 @@
+public abstract class Person
+{
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public int Age { get; set; }
+
+    public Person(string firstName, string lastName, int age)
+    {
+        FirstName = firstName;
+        LastName = lastName;
+        Age = age;
+    }
+
+    public virtual void Introduce()
+    {
+        Console.WriteLine($"Hello, I am {FirstName} {LastName} and I am {Age} years old.");
+    }
+}
+public class Student : Person
+{
+    public string Major { get; set; }
+    public double GPA { get; set; }
+
+    public Student(string firstName, string lastName, int age, string major, double gpa)
+        : base(firstName, lastName, age)
+    {
+        Major = major;
+        GPA = gpa;
+    }
+
+    public override void Introduce()
+    {
+        base.Introduce();
+        Console.WriteLine($"I am a student majoring in {Major} with a GPA of {GPA}.");
+    }
+}
+public class Instructor : Person
+{
+    public string Subject { get; set; }
+    public int YearsOfExperience { get; set; }
+
+    public Instructor(string firstName, string lastName, int age, string subject, int yearsOfExperience)
+        : base(firstName, lastName, age)
+    {
+        Subject = subject;
+        YearsOfExperience = yearsOfExperience;
+    }
+
+    public override void Introduce()
+    {
+        base.Introduce();
+        Console.WriteLine($"I am an instructor teaching {Subject} with {YearsOfExperience} years of experience.");
+    }
+}
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Student student = new Student("John", "Doe", 20, "Computer Science", 3.5);
+        Instructor instructor = new Instructor("Jane", "Smith", 35, "Mathematics", 10);
+
+        student.Introduce();
+        instructor.Introduce();
+    }
+}
