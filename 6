@@ -1,0 +1,61 @@
+public interface IPersonService
+{
+    int CalculateAge();
+    decimal CalculateSalary();
+    void AddAddress(string address);
+    IList<string> GetAddresses();
+}
+
+public interface IStudentService : IPersonService
+{
+    void AddCourse(Course course);
+    double CalculateGPA();
+    IList<Course> GetEnrolledCourses();
+}
+
+public interface IInstructorService : IPersonService
+{
+    void SetDepartment(Department department);
+    Department GetDepartment();
+    bool IsHeadOfDepartment();
+    int CalculateYearsOfExperience(DateTime joinDate);
+}
+public interface ICourseService
+{
+    void EnrollStudent(Student student);
+    IList<Student> GetEnrolledStudents();
+    void AssignGrade(Student student, char grade);
+}
+
+public interface IDepartmentService
+{
+    void SetHead(Instructor instructor);
+    Instructor GetHead();
+    void SetBudget(decimal budget);
+    decimal GetBudget();
+    void AddCourse(Course course);
+    IList<Course> GetOfferedCourses();
+}
+public abstract class Person : IPersonService
+{
+    // Implement IPersonService methods and properties
+}
+
+public class Student : Person, IStudentService
+{
+    // Implement IStudentService methods and properties
+}
+
+public class Instructor : Person, IInstructorService
+{
+    // Implement IInstructorService methods and properties
+}
+public class Course : ICourseService
+{
+    // Implement ICourseService methods and properties
+}
+
+public class Department : IDepartmentService
+{
+    // Implement IDepartmentService methods and properties
+}
